@@ -1,7 +1,7 @@
 from math import atan, cos, sin
 
 from aiohttp import web
-from pymongo import MongoClient
+from motor.motor_asyncio import AsyncIOMotorClient
 
 
 def distance_between_coords(coord0, coord1):
@@ -16,13 +16,12 @@ def distance_between_coords(coord0, coord1):
 async def get_by_id(request):
     """Получает в форме POST запросом id типа мусора и возвращает json из всех подходящих мусорок"""
     id = int(request.query.get('id'))
-    client = MongoClient(host='localhost', port=27017)
+    client = AsyncIOMotorClient('localhost', 27017)
     db = client.db
     collection = db.trashers
     data_cursor = collection.find({'types': id})
-    data = list(data_cursor)
     trashers = []
-    for x in data:
+    async for x in data_cursor:
         trashers.append(x['coords'])
     return web.json_response({'trashers': trashers})
 
@@ -33,15 +32,14 @@ async def get_by_id_and_location(request):
     latitude = form.get('latitude')
     longitude = form.get('longitude')
     coords = latitude + ',' + longitude
-    client = MongoClient(host='localhost', port=27017)
+    client = AsyncIOMotorClient('localhost', 27017)
     db = client.db
     collection = db.trashers
     data_cursor = collection.find({'types': id})
-    data = list(data_cursor)
     m = 100000.0
     trashers = []
     neariest = None
-    for obj in data:
+    async for obj in data_cursor:
         trashers.append(obj['coords'])
         if distance_between_coords(obj['coords'], coords) < m:
             neariest = obj['coords']
