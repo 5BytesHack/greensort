@@ -15,7 +15,8 @@ def distance_between_coords(coord0, coord1):
 
 async def get_by_id(request):
     """Получает в форме POST запросом id типа мусора и возвращает json из всех подходящих мусорок"""
-    id = int(request.query.get('id'))
+    form = await request.post()
+    id = int(form['id'])
     client = AsyncIOMotorClient('localhost', 27017)
     db = client.db
     collection = db.trashers
@@ -27,10 +28,10 @@ async def get_by_id(request):
 
 
 async def get_by_id_and_location(request):
-    form = request.query
-    id = int(form.get('id'))
-    latitude = form.get('latitude')
-    longitude = form.get('longitude')
+    form = await request.post()
+    id = int(form['id'])
+    latitude = form['latitude']
+    longitude = form['longitude']
     coords = latitude + ',' + longitude
     client = AsyncIOMotorClient('localhost', 27017)
     db = client.db
