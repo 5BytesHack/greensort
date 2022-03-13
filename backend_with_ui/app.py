@@ -15,7 +15,7 @@ def index():
 def mapview_frac():
     # creating a map in the view
     if request.method == 'POST':
-        with open('static/fractions.json', 'r') as file:
+        with open('backend_with_ui/static/fractions.json', 'r') as file:
             data = json.load(file)
         id = data.get(request.form.get('frac'))
         res = post('http://142.93.129.164:8080/id', data={'id': id})
@@ -31,7 +31,7 @@ def mapview_mark():
     # creating a map in the view
     if request.method == 'POST':
         form = True
-        with open('static/marking_id.json', 'r') as file:
+        with open('backend_with_ui/static/marking_id.json', 'r') as file:
             data = json.load(file)
         if data.get(request.form.get('mark').upper()):
             id = int(data.get(request.form.get('mark').upper()))
