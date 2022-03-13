@@ -14,16 +14,16 @@ def index():
 @app.route("/map/", methods=['post', 'get'])
 def mapview_frac():
     # creating a map in the view
+    with open('backend_with_ui/static/fractions.json', 'r') as file:
+        data = json.load(file)
     if request.method == 'POST':
-        with open('backend_with_ui/static/fractions.json', 'r') as file:
-            data = json.load(file)
         id = data.get(request.form.get('frac'))
         res = post('http://142.93.129.164:8080/id', data={'id': id})
         res_api = res.json()
         coords = res_api['trashers']
-        return render_template('map.html', coords=coords)
+        return render_template('map.html', coords=coords, form=True)
     else:
-        return render_template('map.html')
+        return render_template('map.html', data=data)
 
 
 @app.route("/mapn/", methods=['post', 'get'])
