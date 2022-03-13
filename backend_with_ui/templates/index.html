@@ -5,17 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>Сортировка</title>
 </head>
 <body class="text-center" style="height: 100%">
-    <header>
-		<h1>СОРТИРУЙ!</h1>
+    <header class="text-light pb-1 pt-2" style="background-color: green; width: 100%;">
+		<a class="nav-link text-light" href="/"><h1>СОРТИРУЙ!</h1></a>
 	</header>
+    <br>
     <div style="height: 100%">
         <h3>Найти точки приёма бытовых отходов:</h3>
 	    <p />
-	    <p /><button class="btn btn-outline-success" id="know" onclick="window.location.href = 'mapn.html';">Я хочу узнать вид отходов по маркировке</button>
-	    <p /><button class="btn btn-outline-success" id="notKnow" onclick="map.html">Я знаю вид отходов</button>
+        <a href = "mapn"><button class="btn btn-outline-success" id="know" >Я хочу узнать вид отходов по маркировке</button></a><br><br>
+        <a href="map"><button class="btn btn-outline-success" id="notKnow" >Я знаю вид отходов</button></a>
     </div>
     <footer></footer>
 </body>

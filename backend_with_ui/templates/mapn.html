@@ -29,9 +29,13 @@
     {% endif %}
 </head>
 
-<body>
+<body class="text-center">
+    <header class="text-light pb-1 pt-2" style="background-color: green; width: 100%;">
+		<a class="nav-link text-light" href="/"><h1>СОРТИРУЙ!</h1></a>
+	</header>
+    <br>
     {% if form %}
-    <div id="map" style="width: 600px; height: 400px"></div>
+    <div id="map" class="pt-2 align-center" style="width: 600px; height: 400px"></div>
     {% else %}
         {{ err }}
     <form action="" method="post">
@@ -39,7 +43,7 @@
             <label for="mark">Маркировка</label>
             <input type="text" name="mark" id="mark">
         </p>
-        <input class="btn btn-primary"  type="submit">
+        <input class="btn btn-outline-success"  type="submit">
     </form>
     {% endif %}
 </body>
